@@ -14,37 +14,48 @@ Repo home: [github.com/premasagar/poloniex][repo]
 MIT, open source. See LICENSE file.
 
 
-## Setting up the client
+## Install via NPM
 
-Either install via NPM:
+    npm install poloniex.js
 
-    npm install poloniex
 
-or clone the repo and install dependencies:
+## Or clone from GitHub
 
     git clone https://github.com/premasagar/poloniex.git
     cd poloniex
     npm install
 
 
-In your script, require the module:
+## Or download the latest zip
 
-    var Poloniex = require('poloniex');
+* [Zip download][repo-zip]
 
-Create a new instance of the client. If only public API calls are needed, then no API key or secret is required:
 
-    var poloniex = new Poloniex();
+## Require as a module
 
-To use Poloniex's trading API, [your API key and secret][poloniex-keys] must be provided:
+In your app, require the module:
 
-    var poloniex = new Poloniex('API_KEY', 'API_SECRET');
+    var Poloniex = require('poloniex.js');
+
+If not installed via NPM, then provide the path to lib/poloniex.js
 
 
 ## Temporary certificate workaround
 
-Currently, the API server's certficate is rejected. This is presumably a temporary issue and has been reported to Poloniex. The line below is a temporary workaround. First try using the client without this line.
+Currently, the API server's certficate is rejected. This is presumably a temporary issue and has been reported to Poloniex. The line below is a temporary workaround. First try using the client without this.
 
     Poloniex.STRICT_SSL = false;
+
+
+## Create an instance of the client
+
+If only public API calls are needed, then no API key or secret is required:
+
+    var poloniex = new Poloniex();
+
+Or, to use Poloniex's trading API, [your API key and secret][poloniex-keys] must be provided:
+
+    var poloniex = new Poloniex('API_KEY', 'API_SECRET');
 
 
 ## Making API calls
@@ -277,6 +288,7 @@ Example response:
 
 
 [repo]: https://github.com/premasagar/poloniex
+[repo-zip]: https://github.com/premasagar/poloniex/archive/master.zip
 [poloniex]: https://poloniex.com
 [poloniex-api]: https://poloniex.com/api
 [poloniex-keys]: https://poloniex.com/apiKeys

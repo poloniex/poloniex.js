@@ -1,5 +1,5 @@
 var Poloniex = require('./lib/poloniex'),
-    // When using as an NPM module, use `require('poloniex')`
+    // When using as an NPM module, use `require('poloniex.js')`
 
     // Create a new instance, with optional API key and secret
     poloniex = new Poloniex(
