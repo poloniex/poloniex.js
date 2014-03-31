@@ -1,6 +1,6 @@
 {
-  "name": "poloniex",
-  "version": "0.0.1",
+  "name": "poloniex.js",
+  "version": "0.0.2",
   "description": "Poloniex API client",
   "author": "Premasagar Rose <p@premasagar.com>",
   "license": "MIT",
