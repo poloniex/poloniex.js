@@ -1,0 +1,34 @@
+{
+  "name": "poloniex",
+  "version": "0.0.1",
+  "description": "Poloniex API client",
+  "author": "Premasagar Rose <p@premasagar.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "main": "lib/poloniex",
+  "dependencies": {
+    "nonce": "~1.0.3",
+    "request": "~2.33.0"
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/premasagar/poloniex.git"
+  },
+  "keywords": [
+    "poloniex",
+    "bitcoin",
+    "cryptocurrency",
+    "exchange",
+    "altcoins"
+  ],
+  "bugs": {
+    "url": "https://github.com/premasagar/poloniex/issues"
+  },
+  "engines": {
+    "node": ">=0.10"
+  }
+}
