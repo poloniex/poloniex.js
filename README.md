@@ -6,7 +6,7 @@ The client supports both public (unauthenticated) and private (authenticated) ca
 
 For private calls, the user secret is never exposed to other parts of the program or over the Web. The user key is sent as a header to the API, along with a signed request.
 
-Repo home: [github.com/premasagar/poloniex][repo]
+Repo home: [github.com/premasagar/poloniex.js][repo]
 
 
 ## License
@@ -21,14 +21,14 @@ MIT, open source. See LICENSE file.
 
 ## Or clone from GitHub
 
-    git clone https://github.com/premasagar/poloniex.git
+    git clone https://github.com/premasagar/poloniex.js.git
     cd poloniex
     npm install
 
 
 ## Or download the latest zip
 
-* [Zip download][repo-zip]
+* [zip download][repo-zip]
 
 
 ## Require as a module
@@ -58,7 +58,7 @@ Or, to use Poloniex's trading API, [your API key and secret][poloniex-keys] must
     var poloniex = new Poloniex('API_KEY', 'API_SECRET');
 
 
-## Making API calls
+## Make API calls
 
 All [Poloniex API][poloniex-api] methods are supported (with some name changes to avoid naming collisions). All methods require a callback function.
 
@@ -287,8 +287,8 @@ Example response:
 
 
 
-[repo]: https://github.com/premasagar/poloniex
-[repo-zip]: https://github.com/premasagar/poloniex/archive/master.zip
+[repo]: https://github.com/premasagar/poloniex.js
+[repo-zip]: https://github.com/premasagar/poloniex.js/archive/master.zip
 [poloniex]: https://poloniex.com
 [poloniex-api]: https://poloniex.com/api
 [poloniex-keys]: https://poloniex.com/apiKeys
