@@ -115,7 +115,7 @@ Example response:
 
 ### returnOrderBook(currencyA, currencyB, callback)
 
-Returns the order book for a given market.  
+Returns the order book for a given market. If currency A is specified as 'all' and currency B is not specified, then order books for all markets will be returned.
 Calls API method `returnOrderBook`.
 
     poloniex.returnOrderBook('VTC', 'BTC', function(err, data) {
