@@ -432,6 +432,14 @@ Example response:
 
     {"provided":[{"id":75073,"currency":"LTC","rate":"0.00020000","amount":"0.72234880","range":2,"autoRenew":0,"date":"2015-05-10 23:45:05","fees":"0.00006000"},{"id":74961,"currency":"LTC","rate":"0.00002000","amount":"4.43860711","range":2,"autoRenew":0,"date":"2015-05-10 23:45:05","fees":"0.00006000"}],"used":[{"id":75238,"currency":"BTC","rate":"0.00020000","amount":"0.04843834","range":2,"date":"2015-05-10 23:51:12","fees":"-0.00000001"}]}
 
+### returnLendingHistory(start, end, limit, callback)
+
+Returns up to "limit" closed loans within the "start" and "end" unix timestamps. (unix timestamps are expressed as numbers such as `1495681818`)
+
+Example response:
+
+    [{"id":352149451,"currency":"XMR","rate":"0.00000410","amount":"0.08077792","duration":"0.02410000","interest":"0.00000001","fee":"0.00000000","earned":"0.00000001","open":"2017-05-25 02:30:24","close":"2017-05-25 03:05:08"},{"id":352147612,"currency":"XRP","rate":"0.00005506","amount":"197.21610000","duration":"0.00200000","interest":"0.00002150","fee":"-0.00000322","earned":"0.00001828","open":"2017-05-25 03:00:22","close":"2017-05-25 03:03:14"}]
+
 ### toggleAutoRenew(orderNumber, callback)
 
 Toggles the autoRenew setting on an active loan, specified by "orderNumber". If successful, "message" will indicate the new autoRenew setting.
