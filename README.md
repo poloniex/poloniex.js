@@ -77,7 +77,7 @@ These methods do not require a user key or secret.
 
 ### returnTicker(callback)
 
-Returns the ticker for all markets.  
+Returns the ticker for all markets.
 Calls API method `returnTicker`.
 
     poloniex.returnTicker(function(err, data) {
@@ -96,7 +96,7 @@ Example response:
 
 ### return24hVolume(callback)
 
-Returns the 24-hour volume for all markets, plus totals for primary currencies.  
+Returns the 24-hour volume for all markets, plus totals for primary currencies.
 Calls API method `return24hVolume`.
 
     poloniex.return24hVolume(function(err, data) {
@@ -115,7 +115,7 @@ Example response:
 
 ### returnOrderBook(currencyA, currencyB, callback)
 
-Returns the order book for a given market.  
+Returns the order book for a given market.
 Calls API method `returnOrderBook`.
 
     poloniex.returnOrderBook('VTC', 'BTC', function(err, data) {
@@ -162,7 +162,7 @@ These methods require the user key and secret.
 
 ### returnBalances(callback)
 
-Returns all of your balances.  
+Returns all of your balances.
 Calls API method `returnBalances`.
 
     poloniex.myBalances(function(err, data) {
@@ -210,9 +210,9 @@ Example response:
 
     {"deposits":
       [{"currency":"BTC","address":"...","amount":"0.01006132","confirmations":10,
-        "txid":"17f819a91369a9ff6c4a34216d434597cfc1b4a3d0489b46bd6f924137a47701","timestamp":1399305798,"status":"COMPLETE"},{"currency":"BTC","address":"...","amount":"0.00404104","confirmations":10, 
+        "txid":"17f819a91369a9ff6c4a34216d434597cfc1b4a3d0489b46bd6f924137a47701","timestamp":1399305798,"status":"COMPLETE"},{"currency":"BTC","address":"...","amount":"0.00404104","confirmations":10,
         "txid":"7acb90965b252e55a894b535ef0b0b65f45821f2899e4a379d3e43799604695c","timestamp":1399245916,"status":"COMPLETE"}],
-        "withdrawals":[{"withdrawalNumber":134933,"currency":"BTC","address":"1N2i5n8DwTGzUq2Vmn9TUL8J1vdr1XBDFg","amount":"5.00010000", 
+        "withdrawals":[{"withdrawalNumber":134933,"currency":"BTC","address":"1N2i5n8DwTGzUq2Vmn9TUL8J1vdr1XBDFg","amount":"5.00010000",
         "timestamp":1399267904,"status":"COMPLETE: 36e483efa6aff9fd53a235177579d98451c4eb237c210e66cd2b9a2d4a988f8e","ipAddress":"..."}]}
 
 ### returnOpenOrders(currencyA, currencyB, callback)
@@ -231,12 +231,13 @@ Example response:
 
     [{"orderNumber":"120466","type":"sell","rate":"0.025","amount":"100","total":"2.5"},{"orderNumber":"120467","type":"sell","rate":"0.04","amount":"100","total":"4"}, ... ]
 
-### returnTradeHistory(currencyA, currencyB, callback)
+### returnTradeHistory(currencyA, currencyB, start, end, callback)
 
-Returns the past 200 trades in a given market.
+Returns your trades in a given market within a range, specified by "start" and "end", both of which should be given as UNIX timestamps.
+If no start and end are provided, returns the past 1 hour worth of trades.
 Calls API method `returnTradeHistory`.
 
-    poloniex.returnTradeHistory('VTC', 'BTC', function(err, data) {
+    poloniex.returnTradeHistory('VTC', 'BTC', Date.now() / 1000 - 60 * 60, Date.now() / 1000, function(err, data) {
         if (err) {
             // handle error
         }
