@@ -165,7 +165,7 @@ These methods require the user key and secret.
 Returns all of your balances.
 Calls API method `returnBalances`.
 
-    poloniex.myBalances(function(err, data) {
+    poloniex.returnBalances(function(err, data) {
         if (err){
             // handle error
         }
@@ -215,11 +215,28 @@ Example response:
         "withdrawals":[{"withdrawalNumber":134933,"currency":"BTC","address":"1N2i5n8DwTGzUq2Vmn9TUL8J1vdr1XBDFg","amount":"5.00010000",
         "timestamp":1399267904,"status":"COMPLETE: 36e483efa6aff9fd53a235177579d98451c4eb237c210e66cd2b9a2d4a988f8e","ipAddress":"..."}]}
 
+### returnOpenOrders('all', callback)
+
+Returns all your open orders.
+
+    poloniex.returnOpenOrders('all', function(err, data){
+        if (err){
+            // handle error
+        }
+
+        console.log(data);
+    });
+
+Example response:
+
+    {"BTC_1CR":[],"BTC_AC":[{"orderNumber":"120466","type":"sell","rate":"0.025","amount":"100","total":"2.5"},{"orderNumber":"120467","type":"sell","rate":"0.04","amount":"100","total":"4"}], ... }
+
+
 ### returnOpenOrders(currencyA, currencyB, callback)
 
 Returns your open orders for a given market, specified by the two given currencies.
 
-    poloniex.myOpenOrders('VTC', 'BTC', function(err, data){
+    poloniex.returnOpenOrders('VTC', 'BTC', function(err, data){
         if (err){
             // handle error
         }
