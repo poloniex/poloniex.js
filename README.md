@@ -113,10 +113,9 @@ Example response:
     {"BTC_LTC":{"BTC":"2.23248854","LTC":"87.10381314"},"BTC_NXT":{"BTC":"0.981616","NXT":"14145"}, ... "totalBTC":"81.89657704","totalLTC":"78.52083806"}
 
 
-### returnOrderBook(currencyA, currencyB, callback)
+### returnOrderBook(currencyA, [currencyB], callback)
 
-Returns the order book for a given market.
-Calls API method `returnOrderBook`.
+Returns the order book for a given market. If currency A is specified as `"all"` and currency B is not specified, then order books for all markets will be returned.
 
     poloniex.returnOrderBook('VTC', 'BTC', function(err, data) {
         if (err){
