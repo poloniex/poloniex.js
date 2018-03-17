@@ -8,7 +8,7 @@
   "main": "lib/poloniex",
   "dependencies": {
     "nonce": "~1.0.3",
-    "request": "^2.33.0"
+    "request": "^2.0.0"
   },
   "devDependencies": {},
   "scripts": {},
