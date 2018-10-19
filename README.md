@@ -129,6 +129,35 @@ Example response:
   {"asks":[[0.00007600,1164],[0.00007620,1300], ... "bids":[[0.00006901,200],[0.00006900,408], ... }
 
 
+### returnTradeHistory(currencyA, currencyB, [start, end,] callback)
+
+Returns the past 200 trades for a given market, or up to 50,000 trades between a range specified in UNIX timestamps by the "start" and "end" parameters.
+
+  poloniex.returnTradeHistory('BTC', 'ETH', function(err, data) {
+    if (err){
+      // handle error
+    }
+
+    console.log(data);
+  });
+
+Example response:
+
+  [ { globalTradeID: 394411584,
+      tradeID: 45193152,
+      date: '2018-10-19 18:31:21',
+      type: 'sell',
+      rate: '0.03136000',
+      amount: '4.14926279',
+      total: '0.13012088' },
+    { globalTradeID: 394411489,
+      tradeID: 45193150,
+      date: '2018-10-19 18:30:58',
+      type: 'sell',
+      rate: '0.03135505',
+      amount: '0.05757062',
+      total: '0.00180512' },
+
 ### returnChartData(currencyA, currencyB, period, start, end, callback)
 
 Returns candlestick chart data. Candlestick "period" is one of 300, 900, 1800, 7200, 14400, or 86400 seconds. "Start" and "end" are given in UNIX timestamp format and used to specify the date range for the data returned.
