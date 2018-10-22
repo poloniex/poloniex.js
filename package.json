@@ -1,6 +1,6 @@
 {
   "name": "poloniex.js",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Poloniex API client",
   "author": "Premasagar Rose <p@premasagar.com>",
   "license": "MIT",
@@ -8,7 +8,7 @@
   "main": "lib/poloniex",
   "dependencies": {
     "nonce": "~1.0.3",
-    "request": "~2.33.0"
+    "request": "^2.87.0"
   },
   "devDependencies": {},
   "scripts": {},
