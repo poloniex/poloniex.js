@@ -114,7 +114,7 @@ poloniex.return24hVolume(function(err, data) {
 
 Example response:
 
-``json
+```json
 {"BTC_LTC":{"BTC":"2.23248854","LTC":"87.10381314"},"BTC_NXT":{"BTC":"0.981616","NXT":"14145"}, ... "totalBTC":"81.89657704","totalLTC":"78.52083806"}
 ```
 
@@ -253,7 +253,7 @@ Generates a new deposit address for the currency specified.
 
 Example response:
 
-``json
+```json
 {"success":1,"response":"CKXbbs8FAVbtEa397gJHSutmrdrBrhUMxe"}
 ```
 
@@ -349,7 +349,7 @@ poloniex.sell('VTC', 'BTC', 0.1, 100, function(err, data) {
 
 Example response:
 
-``json
+```json
 {"orderNumber":31226040,"resultingTrades":[{"amount":"338.8732","date":"2014-10-18 23:03:21","rate":"0.00000173","total":"0.00058625","tradeID":"16167","type":"sell"}]}
 ```
 
@@ -369,7 +369,7 @@ poloniex.cancelOrder('VTC', 'BTC', 170675, function(err, data) {
 
 Example response:
 
-``json
+```json
 {"success":1}
 ```
 
@@ -481,7 +481,7 @@ Example response:
 
 ```json
 {"success":1,"message":"Margin order placed.","orderNumber":"154407998","resultingTrades":{"BTC_DASH":[{"amount":"1.00000000","date":"2015-05-10 22:47:05","rate":"0.01383692","total":"0.01383692","tradeID":"1213556","type":"sell"}]}}
-``
+```
 
 ### getMarginPosition(currencyA, currencyB, callback)
 
@@ -489,7 +489,7 @@ Returns information about the margin position in a given market. If you have no 
 
 Example response:
 
-``json
+```json
 {"amount":"40.94717831","total":"-0.09671314",""basePrice":"0.00236190","liquidationPrice":-1,"pl":"-0.00058655", "lendingFees":"-0.00000038","type":"long"}
 ```
 
