@@ -59,31 +59,33 @@ Or, to use Poloniex's trading API, [your API key and secret][poloniex-keys] must
 
 ## Make API calls
 
-All [Poloniex API][poloniex-api] methods are supported (with some name changes to avoid naming collisions). All methods require a callback function.
+All [Poloniex API][poloniex-api] methods are supported, with some name changes to avoid naming collisions.
 
-The callback is passed two arguments:
+Methods return a [`Promise`][promise] object that will resolve when the API response is received, or reject when an error is encountered:
 
-1. An error object, or `null` if the API request was successful
-2. A data object, the response from the API
+    poloniex.method(arg1, arg2)
+    .then(function (data) { console.log(data) })
+    .catch(function (err) { console.error(err) });
 
-For the most up-to-date API documentation, see [poloniex.com/api][poloniex-api].
+For backwards-compatibility, methods also accept a callback function as their last argument, which can be used instead of the returned promise. The callback is passed two arguments, 1) An error object if there was an error, or otherwise `null`, and 2) A data object, which is the response from the API:
+
+    poloniex.method(arg1, arg2, function (err, data) { ... });
+
+For the most up-to-date Poloniex API documentation, see [poloniex.com/api][poloniex-api].
 
 
 ## Public API methods
 
 These methods do not require a user key or secret.
 
-### returnTicker(callback)
+
+### returnTicker()
 
 Returns the ticker for all markets.
 
-    poloniex.returnTicker(function(err, data) {
-      if (err){
-        // handle error
-      }
-      
-      console.log(data);
-    });
+    poloniex.returnTicker()
+    .then(console.log)
+    .catch(console.error);
 
 
 Example response:
@@ -95,17 +97,13 @@ Example response:
     }
 
 
-### return24hVolume(callback)
+### return24hVolume()
 
 Returns the 24-hour volume for all markets, plus totals for primary currencies.
 
-    poloniex.return24hVolume(function(err, data) {
-      if (err){
-        // handle error
-      }
-      
-      console.log(data);
-    });
+    poloniex.return24hVolume()
+    .then(console.log)
+    .catch(console.error);
 
 
 Example response:
@@ -128,17 +126,13 @@ Example response:
     }
 
 
-### returnOrderBook(currencyA, [currencyB], callback)
+### returnOrderBook(currencyA, [currencyB])
 
 Returns the order book for a given market. If currency A is specified as `"all"` and currency B is not specified, then order books for all markets will be returned.
 
-    poloniex.returnOrderBook('NXT', 'BTC', function(err, data) {
-      if (err){
-        // handle error
-      }
-      
-      console.log(data);
-    });
+    poloniex.returnOrderBook('NXT', 'BTC')
+    .then(console.log)
+    .catch(console.error);
 
 
 Example response:
@@ -158,17 +152,13 @@ Example response:
     }
 
 
-### returnTradeHistory(currencyA, currencyB, [start, end, ] callback)
+### returnTradeHistory(currencyA, currencyB, [start], [end])
 
-Returns the past 200 trades for a given market, or up to 50, 000 trades between a range specified in UNIX timestamps by the "start" and "end" parameters.
+Returns the past 200 trades for a given market, or up to 50000 trades between a range specified in UNIX timestamps by the `start` and `end` parameters.
 
-    poloniex.returnTradeHistory('BTC', 'ETH', function(err, data) {
-      if (err){
-        // handle error
-      }
-      
-      console.log(data);
-    });
+    poloniex.returnTradeHistory('BTC', 'ETH')
+    .then(console.log)
+    .catch(console.error);
 
 
 Example response:
@@ -198,9 +188,9 @@ Example response:
     ]
 
 
-### returnChartData(currencyA, currencyB, period, start, end, callback)
+### returnChartData(currencyA, currencyB, period, start, end)
 
-Returns candlestick chart data. Candlestick "period" is one of 300, 900, 1800, 7200, 14400, or 86400 seconds. "Start" and "end" are given in UNIX timestamp format and used to specify the date range for the data returned.
+Returns candlestick chart data. Candlestick `period` is one of `300`, `900`, `1800`, `7200`, `14400`, or `86400` seconds. The `start` and `end` are given in UNIX timestamp format and used to specify the date range for the data returned.
 
 Example response:
 
@@ -215,11 +205,12 @@ Example response:
         "quoteVolume": 10259.29079097,
         "weightedAverage": 0.00430015
       },
+      
       ...
     ]
 
 
-### returnCurrencies(callback)
+### returnCurrencies()
 
 Returns information about all currencies supported on the platform.
 
@@ -241,7 +232,7 @@ Example response:
     }
 
 
-### returnLoanOrders(currency, callback)
+### returnLoanOrders(currency)
 
 Returns the list of loan offers and demands for a given currency.
 
@@ -275,18 +266,9 @@ Example response:
 
 These methods require the user key and secret.
 
-### returnBalances(callback)
+### returnBalances()
 
 Returns all of your balances.
-
-    poloniex.returnBalances(function(err, data) {
-      if (err){
-        // handle error
-      }
-      
-      console.log(data);
-    });
-
 
 Example response:
 
@@ -297,7 +279,7 @@ Example response:
     }
 
 
-### returnCompleteBalances(account, callback)
+### returnCompleteBalances(account)
 
 If `account` is `null` or omitted, returns the complete balances for just your exchange account. If `account` is `"all"`, then it will include your margin and lending accounts.
 
@@ -320,7 +302,7 @@ Example response:
     }
 
 
-### returnDepositAddresses(callback)
+### returnDepositAddresses()
 
 Returns all of your deposit addresses.
 
@@ -333,7 +315,7 @@ Example response:
     }
 
 
-### generateNewAddress(currency, callback)
+### generateNewAddress(currency)
 
 Generates a new deposit address for the currency specified.
 
@@ -345,9 +327,9 @@ Example response:
     }
 
 
-### returnDepositsWithdrawals(start, end, callback)
+### returnDepositsWithdrawals(start, end)
 
-Returns your deposit and withdrawal history within a range, specified by "start" and "end", both of which should be given as UNIX timestamps.
+Returns your deposit and withdrawal history within a range, specified by `start` and `end`, both of which should be given as UNIX timestamps.
 
 Example response:
 
@@ -387,17 +369,13 @@ Example response:
     }
 
 
-### returnOpenOrders(currencyA, [currencyB], callback)
+### returnOpenOrders(currencyA, [currencyB])
 
 Returns your open orders for a given market. If currency A is specified as `"all"` and currency B is not specified, then your open orders for all markets will be returned.
 
-    poloniex.returnOpenOrders('NXT', 'BTC', function(err, data){
-      if (err){
-        // handle error
-      }
-      
-      console.log(data);
-    });
+    poloniex.returnOpenOrders('NXT', 'BTC')
+    .then(console.log)
+    .catch(console.error)
 
 
 Example response:
@@ -421,18 +399,14 @@ Example response:
     ]
 
 
-### returnTradeHistory(currencyA, currencyB, start, end, callback)
+### returnTradeHistory(currencyA, currencyB, start, end)
 
-Returns your trades in a given market within a range, specified by "start" and "end", both of which should be given as UNIX timestamps.
+Returns your trades in a given market within a range, specified by `start` and `end`, both of which should be given as UNIX timestamps.
 If no start and end are provided, returns the past 1 hour worth of trades.
 
-    poloniex.returnTradeHistory('NXT', 'BTC', Date.now() / 1000 - 60 * 60, Date.now() / 1000, function(err, data) {
-      if (err) {
-        // handle error
-      }
-      
-      console.log(data);
-    });
+    poloniex.returnTradeHistory('NXT', 'BTC', Date.now() / 1000 - 60 * 60, Date.now() / 1000)
+    .then(console.log)
+    .catch(console.error)
 
 
 Example response:
@@ -456,7 +430,7 @@ Example response:
     ]
 
 
-### returnOrderTrades(orderNumber, callback)
+### returnOrderTrades(orderNumber)
 
 Returns all trades involving the given order number.
 
@@ -478,7 +452,7 @@ Example response:
     ]
 
 
-### buy(currencyA, currencyB, rate, amount, callback)
+### buy(currencyA, currencyB, rate, amount)
 
 Places a limit buy order in a given market.
 
@@ -499,17 +473,13 @@ Example response:
     }
 
 
-### sell(currencyA, currencyB, rate, amount, callback)
+### sell(currencyA, currencyB, rate, amount)
 
 Places a limit sell order in a given market.
 
-    poloniex.sell('NXT', 'BTC', 0.1, 100, function(err, data) {
-      if (err){
-        // handle error
-      }
-      
-      console.log(data);
-    });
+    poloniex.sell('NXT', 'BTC', 0.1, 100)
+    .then(console.log)
+    .catch(console.error);
 
 
 Example response:
@@ -529,17 +499,13 @@ Example response:
     }
 
 
-### cancelOrder(currencyA, currencyB, orderNumber, callback)
+### cancelOrder(currencyA, currencyB, orderNumber)
 
 Cancels an order you have placed in a given market.
 
-    poloniex.cancelOrder('NXT', 'BTC', 170675, function(err, data) {
-      if (err){
-        // handle error
-      }
-      
-      console.log(data);
-    });
+    poloniex.cancelOrder('NXT', 'BTC', 170675)
+    .then(console.log)
+    .catch(console.error)
 
 
 Example response:
@@ -549,7 +515,7 @@ Example response:
     }
 
 
-### moveOrder(orderNumber, rate, amount, callback)
+### moveOrder(orderNumber, rate, amount)
 
 Cancels an order and places a new one of the same type in a single atomic transaction, meaning either both operations will succeed or both will fail.
 
@@ -564,17 +530,13 @@ Example response:
     }
 
 
-### withdraw(currency, amount, address, callback)
+### withdraw(currency, amount, address)
 
 Immediately places a withdrawal for a given currency, with no email confirmation. In order to use this method, the withdrawal privilege must be enabled for your API key.
 
-    poloniex.withdraw('NXT', 2398, '17Hzfoobar', function(err, data) {
-      if (err){
-        // handle error
-      }
-      
-      console.log(data);
-    });
+    poloniex.withdraw('NXT', 2398, '17Hzfoobar')
+    .then(console.log)
+    .catch(console.error)
 
 
 Example response:
@@ -584,7 +546,7 @@ Example response:
     }
 
 
-### returnFeeInfo(callback)
+### returnFeeInfo()
 
 If you are enrolled in the maker-taker fee schedule, returns your current trading fees and trailing 30-day volume in BTC. This information is updated once every 24 hours.
 
@@ -598,7 +560,7 @@ Example response:
     }
 
 
-### returnAvailableAccountBalances(account, callback)
+### returnAvailableAccountBalances(account)
 
 If `account` is `null` or omitted, returns your balances sorted by account. If `account` is a string, returns the balances for that account. Balances in a margin account may not be accessible if you have any open margin positions or orders.
 
@@ -624,7 +586,7 @@ Example response:
     }}
 
 
-### returnTradableBalances(callback)
+### returnTradableBalances()
 
 Returns the current tradable balances for each currency in each market for which margin trading is enabled. Balances may vary continually with market conditions.
 
@@ -646,7 +608,7 @@ Example response:
     }
 
 
-### transferBalance(currency, amount, fromAccount, toAccount, callback)
+### transferBalance(currency, amount, fromAccount, toAccount)
 
 Transfers funds from one account to another (e.g. from your exchange account to your margin account).
 
@@ -658,7 +620,7 @@ Example response:
     }
 
 
-### returnMarginAccountSummary(callback)
+### returnMarginAccountSummary()
 
 Returns a summary of the entire margin account. This is the same information you will find in the Margin Account section of the Margin Trading page, under the Markets list.
 
@@ -674,17 +636,13 @@ Example response:
     }
 
 
-### marginBuy(currencyA, currencyB, rate, amount, lendingRate, callback)
+### marginBuy(currencyA, currencyB, rate, amount, lendingRate)
 
 Places a margin buy order in a given market. You may optionally specify a maximum lending rate using the "lendingRate" parameter. If successful, the method will return the order number and any trades immediately resulting from your order.
 
-    poloniex.buy('NXT', 'BTC', 0.1, 100, function(err, data) {
-      if (err){
-        // handle error
-      }
-      
-      console.log(data);
-    });
+    poloniex.buy('NXT', 'BTC', 0.1, 100)
+    .then(console.log)
+    .catch(console.error)
 
 
 Example response:
@@ -708,7 +666,7 @@ Example response:
     }
 
 
-### marginSell(currencyA, currencyB, rate, amount, lendingRate, callback)
+### marginSell(currencyA, currencyB, rate, amount, lendingRate)
 
 Places a margin sell order in a given market. You may optionally specify a maximum lending rate using the "lendingRate" parameter. If successful, the method will return the order number and any trades immediately resulting from your order.
 
@@ -733,7 +691,7 @@ Example response:
     }
 
 
-### getMarginPosition(currencyA, currencyB, callback)
+### getMarginPosition(currencyA, currencyB)
 
 Returns information about the margin position in a given market. If you have no margin position in the specified market,
         "type" will be set to "none". "liquidationPrice" is an estimate, and does not necessarily represent the price at which an actual forced liquidation will occur. If you have no liquidation price, the value will be -1.
@@ -751,7 +709,7 @@ Example response:
     }
 
 
-### closeMarginPosition(currencyA, currencyB, callback)
+### closeMarginPosition(currencyA, currencyB)
 
 Closes a margin position in a given market using a market order. This call will also return success if you do not have an open position in the specified market.
 
@@ -784,7 +742,7 @@ Example response:
     }
 
 
-### createLoanOffer(currency, amount, duration, autoRenew, lendingRate, callback)
+### createLoanOffer(currency, amount, duration, autoRenew, lendingRate)
 
 Creates a loan offer for a given currency. The "autoRenew" parameter should be a 0 or a 1.
 
@@ -797,7 +755,7 @@ Example response:
     }
 
 
-### cancelLoanOffer(orderNumber, callback)
+### cancelLoanOffer(orderNumber)
 
 Cancels a loan offer specified by "orderNumber".
 
@@ -809,7 +767,7 @@ Example response:
     }
 
 
-### returnOpenLoanOffers(callback)
+### returnOpenLoanOffers()
 
 Returns open loan offers for each currency.
 
@@ -842,7 +800,7 @@ Example response:
     }
 
 
-### returnActiveLoans(callback)
+### returnActiveLoans()
 
 Returns active loans for each currency.
 
@@ -876,7 +834,7 @@ Example response:
     }
 
 
-### returnLendingHistory(start, end, limit, callback)
+### returnLendingHistory(start, end, limit)
 
 Returns up to "limit" closed loans within the "start" and "end" unix timestamps. (unix timestamps are expressed as numbers such as `1495681818`)
 
@@ -911,7 +869,7 @@ Example response:
     ]
 
 
-### toggleAutoRenew(orderNumber, callback)
+### toggleAutoRenew(orderNumber)
 
 Toggles the autoRenew setting on an active loan, specified by "orderNumber". If successful,
         "message" will indicate the new autoRenew setting.
@@ -929,3 +887,4 @@ Example response:
 [poloniex]: https://poloniex.com
 [poloniex-api]: https://poloniex.com/api
 [poloniex-keys]: https://poloniex.com/apiKeys
+[promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
