@@ -881,6 +881,11 @@ Example response:
       "message": 0
     }
 
+## Changelog
+
+2019-01-08 Migrate from original module author, https://github.com/premasagar/poloniex.js
+2019-01-07 Promises support
+2014-03-31 Initial commit by @premasagar
 
 [repo]: https://github.com/anders94/poloniex.js
 [repo-zip]: https://github.com/anders94/poloniex.js/archive/master.zip
