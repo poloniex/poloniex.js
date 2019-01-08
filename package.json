@@ -2,7 +2,7 @@
   "name": "poloniex.js",
   "version": "1.0.0",
   "description": "Poloniex API client",
-  "author": "Premasagar Rose <p@premasagar.com>",
+  "author": "Anders Brownworth anders-git@anders.com>",
   "license": "MIT",
   "readmeFilename": "README.md",
   "main": "lib/poloniex",
@@ -14,7 +14,7 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/premasagar/poloniex.js.git"
+    "url": "https://github.com/anders94/poloniex.js.git"
   },
   "keywords": [
     "poloniex",
@@ -24,7 +24,7 @@
     "altcoins"
   ],
   "bugs": {
-    "url": "https://github.com/premasagar/poloniex.js/issues"
+    "url": "https://github.com/anders94/poloniex.js/issues"
   },
   "engines": {
     "node": ">=0.10"
