@@ -6,7 +6,7 @@ The client supports both public (unauthenticated) and private (authenticated) ca
 
 For private calls, the user secret is never exposed to other parts of the program or over the Web. The user key is sent as a header to the API, along with a signed request.
 
-Repo home: [github.com/premasagar/poloniex.js][repo]
+Repo home: [github.com/anders94/poloniex.js][repo]
 
 
 ## License
@@ -22,7 +22,7 @@ MIT, open source. See LICENSE file.
 ## Or clone from GitHub
 
 
-    git clone https://github.com/premasagar/poloniex.js.git
+    git clone https://github.com/anders94/poloniex.js.git
     cd poloniex
     npm install
 
@@ -882,8 +882,8 @@ Example response:
     }
 
 
-[repo]: https://github.com/premasagar/poloniex.js
-[repo-zip]: https://github.com/premasagar/poloniex.js/archive/master.zip
+[repo]: https://github.com/anders94/poloniex.js
+[repo-zip]: https://github.com/anders94/poloniex.js/archive/master.zip
 [poloniex]: https://poloniex.com
 [poloniex-api]: https://poloniex.com/api
 [poloniex-keys]: https://poloniex.com/apiKeys
