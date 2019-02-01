@@ -1,6 +1,6 @@
 {
   "name": "poloniex.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Poloniex API client",
   "author": "Anders Brownworth anders-git@anders.com>",
   "license": "MIT",
@@ -14,7 +14,7 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/anders94/poloniex.js.git"
+    "url": "https://github.com/poloniex/poloniex.js.git"
   },
   "keywords": [
     "poloniex",
@@ -24,7 +24,7 @@
     "altcoins"
   ],
   "bugs": {
-    "url": "https://github.com/anders94/poloniex.js/issues"
+    "url": "https://github.com/poloniex/poloniex.js/issues"
   },
   "engines": {
     "node": ">=0.10"
